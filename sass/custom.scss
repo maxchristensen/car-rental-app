@@ -23,8 +23,29 @@ h2 {
     font-size: 58pt;
 }
 
-h6, p {
+h6, p, button {
     font-family: 'Space Mono', monospace;
+}
+
+button{
+    border-radius: 45px;
+    padding: 20px 110px;
+    border: 0;
+    background-color: $black;
+    color: $white;
+    font-size: 24px;
+    transition: all 0.5s ease;
+
+}
+button:hover{
+    border-radius: 45px;
+    padding: 20px 110px;
+    border: 0;
+    background-color: $white;
+    color: $blue;
+    font-size: 24px;
+    text-decoration: underline;
+    transition: all 0.5s ease;
 }
 
 body {
@@ -68,8 +89,27 @@ body {
 
 .featuredCars {
     background-color: $blue;
-    margin-top: 50px;
     width: 50vw;
     height: 33vh;
     z-index: 10;
 }
+
+.form {
+    justify-content: center;
+}
+
+.datePicker {
+    background-color: $blue;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid $white;
+    height: 75px;
+    width: 300px;
+}
+
+input::placeholder, input {
+    font-family: 'Space Mono', monospace;
+    color: $white;
+    font-size: 24px;
+  }
