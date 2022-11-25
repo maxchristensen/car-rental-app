@@ -12,25 +12,41 @@
 </head>
 <body>
 
-    <!-- sidebar -->
-    <div class="sidebar">
-        <div class="form">
-            <input type="text" class="datePicker" id="frompicker" placeholder="From...">
-            <br><br><br>
-            <input type="text" class="datePicker" id="topicker" placeholder="To...">
-            <br><br><br>
-            <input type="checkbox">
-            <br><br><br>
-            <button>SEARCH</button>
+    <!-- master container -->
+    <div class="masterContainer">
+            
+        <!-- sidebar -->
+        <div class="sidebar">
+            <div class="form">
+                <input type="text" class="datePicker" id="frompicker" placeholder="From...">
+                <br><br><br>
+                <input type="text" class="datePicker" id="topicker" placeholder="To...">
+                <br><br><br>
+                <input type="checkbox">
+                <br><br><br>
+                <button>SEARCH</button>
+            </div>
+        <!-- end of sidebar -->
         </div>
-    <!-- end of sidebar -->
-    </div>
 
-    <div class="container">
-        <!-- featured cars -->
-        <div class="featuredCars">
-            <h2>Featured Cars</h2>
+        <div class="container">
+            <!-- featured cars -->
+            <div class="featuredCars">
+                <h2 class="containerHeading">Featured Cars</h2>
+                <div class="gallery">
+                    <div class="bigImage">
+                        <img src="img/img1.jpg" alt="">
+                    </div>
+                    <div class="twoImages">
+                        <img src="img/img2.jpg" alt="">
+                        <img class="bottomImg" src="img/img3.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        <!-- end of container -->
         </div>
+
+
 
     <!-- end of master container -->
     </div>
@@ -42,13 +58,10 @@
 
     <!-- jQuery 3.6.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
     <!-- Jquery UI -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
     <!-- parsley js -->
     <script src="js/parsley.js"></script>
-
     <!-- custom js -->
     <script src="js/custom.js"></script>
 

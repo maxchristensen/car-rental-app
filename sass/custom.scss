@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5 {
 
 h2 {
     color: $white;
-    font-size: 58pt;
+    font-size: 48pt;
 }
 
 h6, p, button {
@@ -60,6 +60,18 @@ body {
     background-color: $white;
 }
 
+.masterContainer{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    position: absolute;
+    top: 20%;
+    left: 41%;
+}
+
 #title {
     // font size and colour
     color: $blue;
@@ -89,9 +101,34 @@ body {
 
 .featuredCars {
     background-color: $blue;
-    width: 50vw;
-    height: 33vh;
+    width: 35vw;
+    height: 60vh;
     z-index: 10;
+}
+
+.gallery{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.bigImage img{
+    width: 100%;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+.twoImages {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-right: 10px;
+}
+
+.twoImages img {
+    width: 99%;
+    margin-bottom: 10px;
 }
 
 .form {
@@ -105,7 +142,7 @@ body {
     border-right: none;
     border-bottom: 3px solid $white;
     height: 75px;
-    width: 300px;
+    width: 100%;
 }
 
 input::placeholder, input {
@@ -113,3 +150,7 @@ input::placeholder, input {
     color: $white;
     font-size: 24px;
   }
+
+.containerHeading{
+    padding: 20px;
+}
