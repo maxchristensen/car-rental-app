@@ -93,7 +93,7 @@ body {
     // hide the scrollbar
     overflow: hidden;
     // add background image
-    background-image: url('../img/Group 19.png');
+    background-image: url('../img/background.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -313,6 +313,7 @@ body {
 
 .datePicker {
     background-color: $blue;
+    color: $white;
     border-top: none;
     border-left: none;
     border-right: none;
