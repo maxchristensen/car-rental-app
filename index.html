@@ -21,14 +21,16 @@
         <!-- sidebar -->
         <div class="sidebar">
             <div class="form">
-                <input type="text" class="datePicker" id="frompicker" placeholder="From...">
-                <br><br><br>
-                <input type="text" class="datePicker" id="topicker" placeholder="To...">
-                <br><br><br>
-                <input type="text" class="datePicker" id="passengerpicker" placeholder="Passengers...">
-                <h6>Wheelchair Accessible?</h6><input type="checkbox" id="wheelchair">
-                <br><br><br>
-                <button id="searchResultsButton">SEARCH</button>
+                <form id="parsleyValidation">
+                    <input type="text" class="datePicker" id="frompicker" data-parsley-required="true" data-parsley-required-message="Please enter date of pickup" placeholder="From...">
+                    <br><br><br>
+                    <input type="text" class="datePicker" id="topicker" data-parsley-required="true" data-parsley-required-message="Please enter date of dropoff" placeholder="To...">
+                    <br><br><br>
+                    <input type="text" class="datePicker" id="passengerpicker" data-parsley-required="true" data-parsley-required-message="Please enter the number of passengers" placeholder="Passengers...">
+                    <h6>Wheelchair Accessible?</h6><input type="checkbox" id="wheelchair">
+                    <br><br><br>
+                    <button id="searchResultsButton" data-parsley-type="submit">SEARCH</button>
+                </form>
             </div>
         <!-- end of sidebar -->
         </div>

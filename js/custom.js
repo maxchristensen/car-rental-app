@@ -8,6 +8,9 @@
  * Create and computate total fuel price based on users inputted distance
  */
 
+$(document).ready(function (){
+
+// array of cars
 var cars = [
     // motorbike
     {
@@ -113,32 +116,37 @@ var cars = [
         litresPer100km: "17",
     },
 
-]
+];
+
+// form validation
+var parsleyForm = $("#parsleyValidation").parsley();
+
+$('#parsleyValidation').find('#searchResultsButton').click(function(){
+    parsleyForm.validate();
+})
 
 
- $(document).ready(function (){
-
-    // Assign DatePickers
-    $(function(){
-        $("#frompicker").datepicker({
-            dateFormat: "dd-mm-yy"
-        });
-        $("#topicker").datepicker({
-            dateFormat: "dd-mm-yy"
-        });
-    })
-
-    // Onclick of date button 
-    $("#dateButton").click(function(){
-        let fromdate = $("#frompicker").datepicker("getDate");
-        let todate = $("#topicker").datepicker("getDate");
-        console.log(fromdate);
-        console.log(todate);
-        let difference = fromdate - todate;
-        console.log(difference);
-        let days = Math.abs(Math.ceil(difference / (1000 * (60 * 60) * 24)));
-        console.log(days);
+// Assign DatePickers
+$(function(){
+    $("#frompicker").datepicker({
+        dateFormat: "dd-mm-yy"
     });
+    $("#topicker").datepicker({
+        dateFormat: "dd-mm-yy"
+    });
+});
+
+// Onclick of date button 
+$("#dateButton").click(function(){
+    var fromdate = $("#frompicker").datepicker("getDate");
+    var todate = $("#topicker").datepicker("getDate");
+    console.log(fromdate);
+    console.log(todate);
+    var difference = fromdate - todate;
+    console.log(difference);
+    var days = Math.abs(Math.ceil(difference / (1000 * (60 * 60) * 24)));
+    console.log(days);
+});
 
 
 
