@@ -334,3 +334,10 @@ input::placeholder, input {
     padding: 10px 10px 5px 10px;
     color: $white;
 }
+
+li.parsley-required{
+    font-family: 'Space Mono', monospace;
+    text-decoration: none;
+    list-style: none;
+    margin-top: 5px;
+}

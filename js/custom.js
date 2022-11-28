@@ -1,20 +1,15 @@
-// For this project, I am following the AirBNB JavaScript code style guide
-
 /** JAVASCRIPT CODE TODO LIST
- * Create project array based on brief dataset
- * Check Form Validation - Ensure that every section of the form is filled out.
  * Display appropriate results based on the users input
- *  on click function on the search button
+ * Create hide show for the more information section of the results
  * Create and computate total fuel price based on users inputted distance
  */
 
 $(document).ready(function (){
-
 // array of cars
 var cars = [
     // motorbike
     {
-        name: "Harley",
+        name: "Harley", 
         image: "img/img1.jpg",
         makeModel: "1986 Harley Davidson Street 500",
         minDays: "1",
@@ -118,13 +113,29 @@ var cars = [
 
 ];
 
+// inputted variables
+var fromdate;
+var todate;
+var difference;
+var days;
+var tickbox = $("#wheelchair");
+
 // form validation
 var parsleyForm = $("#parsleyValidation").parsley();
-
-$('#parsleyValidation').find('#searchResultsButton').click(function(){
+$('#parsleyValidation').find('#searchResultsButton').click(function(event){
+    event.preventDefault();
     parsleyForm.validate();
-})
+});
 
+parsleyForm.subscribe('parsley:form:success', function() {
+    var fromdate = $("#frompicker").datepicker("getDate");
+    var todate = $("#topicker").datepicker("getDate");
+    var difference = fromdate - todate;
+    var days = Math.abs(Math.ceil(difference / (1000 * (60 * 60) * 24)));
+    console.log('great success, very nice!');
+    $('.featuredCars').hide();
+
+});
 
 // Assign DatePickers
 $(function(){
@@ -136,20 +147,29 @@ $(function(){
     });
 });
 
-// Onclick of date button 
-$("#dateButton").click(function(){
-    var fromdate = $("#frompicker").datepicker("getDate");
-    var todate = $("#topicker").datepicker("getDate");
-    console.log(fromdate);
-    console.log(todate);
-    var difference = fromdate - todate;
-    console.log(difference);
-    var days = Math.abs(Math.ceil(difference / (1000 * (60 * 60) * 24)));
-    console.log(days);
-});
+/** function to show results in the DOM based on inputed information into the form
+    * run a for loop through my cars array
+    * run if statement that compare number of days entered in for to being more than/equal to the min days of the cars in the array and less than/equal to the max days of the cars in the array
+    * run if statement that compare number of passengers entered in for to being more than/equal to the min passengers of the cars in the array and less than/equal to the max passengers of the cars in the array
+    * run if statement that checks if the user has checked the wheelchair accessible option for the cars
+    * output results into the inner HTML of the results div
+*/
 
-
-
+function showCarResults(){
+    for (let i = 0; i < cars.length; i++) {
+        var car = cars[i];
+        if (days >= car.minDays && days <= car.maxDays) {
+            return;            
+        };
+        if (passengers >= car.minPassengers && days <= car.maxPassengers) {
+            return;            
+        }
+        if (tickbox.checked == true) {
+            return;
+        }
+        
+    }
+}
 
 
 });
