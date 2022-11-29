@@ -152,6 +152,7 @@ body {
 .resultsSection{
     display: flex;
     flex-direction: row;
+    visibility:hidden;
 }
 
 .results, .moreInformation {
@@ -159,6 +160,10 @@ body {
     width: 50%;
     height: 65vh;
  }
+
+.moreInformation{
+    visibility:hidden;
+}
 
 .searchResults {
     padding: 10px;
@@ -254,6 +259,7 @@ body {
     width: 50%;
     height: 20vh;
     border: 10px solid $blue;
+    visibility: hidden;
 }
 
 .fuelHeader, .calculateFuelCosts{
@@ -272,8 +278,7 @@ body {
     background-color: $white;
     height: 70%;
     padding: 10px;
-    color: $blue;
-    
+    color: $blue;    
 }
 
 .enterDistance{
