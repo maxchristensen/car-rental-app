@@ -1,6 +1,5 @@
 /** JAVASCRIPT CODE TODO LIST
  * Get wheelchair friendly tickbox working in the if statement
- * Create and computate total fuel price based on users inputted distance
  */
 
 $(document).ready(function (){
@@ -131,6 +130,8 @@ var days;
 var tickbox = $("#wheelchair");
 var carResults = $('.results');
 var moreCarInfo = $('.moreInformation');
+var distanceInput = document.getElementById('enterDistance');
+var selectedCar;
 
 // form validation
 var parsleyForm = $("#parsleyValidation").parsley();
@@ -161,7 +162,6 @@ $(function(){
     });
 });
 
-
 /** function to show results in the DOM based on inputed information into the form
     * run if statement that checks if the user has checked the wheelchair accessible option for the cars
 */
@@ -169,10 +169,10 @@ $(function(){
 function showCarResults(){
     console.log("this is working :)");
     var resultsOutput = $('.searchResults');
-    resultsOutput.html(' ');
+    resultsOutput.html(` `);
     for (var i = 0; i < cars.length; i++) {
         var car = cars[i];
-        if ((days >= car.minDays && days <= car.maxDays) && (passengers >= car.minPassengers && passengers <= car.maxPassengers)) {
+        if ((days >= car.minDays && days <= car.maxDays) && (passengers >= car.minPassengers && passengers <= car.maxPassengers) && (tickbox.checked == true && car.wheelchairFriendly == true)) {
             resultsOutput.append(`
             <div class="resultItem" id="${i}">
                 <div class="resultImg">
@@ -191,6 +191,23 @@ function showCarResults(){
 
         } else {
 
+        } if ((days >= car.minDays && days <= car.maxDays) && (passengers >= car.minPassengers && passengers <= car.maxPassengers)) {
+            resultsOutput.append(`
+            <div class="resultItem" id="${i}">
+                <div class="resultImg">
+                    <img class="previewImg" src="${car.image}" alt="">
+                </div>
+                <div class="resultInfo">
+                    <h3>${car.name}</h3>
+                    <h6>${car.makeModel}</h6>
+                    <p>${car.litresPer100km}/100km</p>
+                </div>
+                <div class="priceTag">
+                    <h4>${car.costPerDay}<br>/Day</h4>
+                </div>
+            </div>
+            `);
+
         }
 
         }
@@ -202,6 +219,7 @@ function showMoreInformation() {
     var resultItems = document.querySelectorAll('.resultItem');
     Array.from(resultItems).forEach(function(resultItems){
         resultItems.addEventListener('click', function() {
+            selectedCar = cars[this.id];
             $('.moreInformation').css('visibility', 'visible');
             var carMoreInformation = $('.moreInformation');
                 carMoreInformation.html(`
@@ -211,19 +229,33 @@ function showMoreInformation() {
                             <h5 class="carModel">${cars[this.id].makeModel}</h5>
                         </div>
                         <div class="moreInfoCarImage">
-                            <img src="img/img1.jpg" alt="">
+                            <img src="${cars[this.id].image}" alt="">
                         </div>
                     </div>
                     <div class="moreInfoDescription">
-                        <p>this is a paragraph...</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
                         <button class="bookNow">BOOK NOW</button>
                     </div>
                 </div>
                 `);
-
         });
     });
 }
+
+// function that calculates the total cost of fuel
+distanceInput.addEventListener('keyup', function() {
+    var totalCost = $('.totalCost');
+    var input = Number(distanceInput.value);
+    // computation of total fuel cost
+    var litrePerKM = selectedCar.litresPer100km / 100;
+    var costPerLitre = 2.7;
+    var finalFuelPrice = input * (litrePerKM * costPerLitre);
+    // insert that total price into the HTML
+    totalCost.html(`
+    <p>Your estimated fuel cost is $${finalFuelPrice.toFixed(2)}</p>
+    `);
+});
+
 // end of jQuery master function
 });
 
