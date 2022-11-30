@@ -1,6 +1,5 @@
 /** JAVASCRIPT CODE TODO LIST
- * Display appropriate results based on the users input
- * Create hide show for the more information section of the results
+ * Get wheelchair friendly tickbox working in the if statement
  * Create and computate total fuel price based on users inputted distance
  */
 
@@ -164,11 +163,7 @@ $(function(){
 
 
 /** function to show results in the DOM based on inputed information into the form
-    * run a for loop through my cars array
-    * run if statement that compare number of days entered in for to being more than/equal to the min days of the cars in the array and less than/equal to the max days of the cars in the array
-    * run if statement that compare number of passengers entered in for to being more than/equal to the min passengers of the cars in the array and less than/equal to the max passengers of the cars in the array
     * run if statement that checks if the user has checked the wheelchair accessible option for the cars
-    * output results into the inner HTML of the results div
 */
 
 function showCarResults(){
@@ -177,9 +172,9 @@ function showCarResults(){
     resultsOutput.html(' ');
     for (var i = 0; i < cars.length; i++) {
         var car = cars[i];
-        if ((days > car.minDays && days < car.maxDays) && (passengers > car.minPassengers && passengers < car.maxPassengers)) {
+        if ((days >= car.minDays && days <= car.maxDays) && (passengers >= car.minPassengers && passengers <= car.maxPassengers)) {
             resultsOutput.append(`
-            <div class="resultItem">
+            <div class="resultItem" id="${i}">
                 <div class="resultImg">
                     <img class="previewImg" src="${car.image}" alt="">
                 </div>
@@ -193,13 +188,13 @@ function showCarResults(){
                 </div>
             </div>
             `);
-        showMoreInformation();
+
         } else {
 
         }
 
-        
         }
+        showMoreInformation();
 }
 
 // onclick for more information visibility
@@ -208,6 +203,24 @@ function showMoreInformation() {
     Array.from(resultItems).forEach(function(resultItems){
         resultItems.addEventListener('click', function() {
             $('.moreInformation').css('visibility', 'visible');
+            var carMoreInformation = $('.moreInformation');
+                carMoreInformation.html(`
+                    <div class="moreInfoHeader">
+                        <div class="moreInfoCarDetails">
+                            <h2>${cars[this.id].name}</h2>
+                            <h5 class="carModel">${cars[this.id].makeModel}</h5>
+                        </div>
+                        <div class="moreInfoCarImage">
+                            <img src="img/img1.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="moreInfoDescription">
+                        <p>this is a paragraph...</p>
+                        <button class="bookNow">BOOK NOW</button>
+                    </div>
+                </div>
+                `);
+
         });
     });
 }
