@@ -1,7 +1,3 @@
-/** JAVASCRIPT CODE TODO LIST
- * Get wheelchair friendly tickbox working in the if statement
- */
-
 $(document).ready(function (){
 // array of cars
 var cars = [
@@ -127,11 +123,56 @@ var todate;
 var difference;
 var passengers;
 var days;
-var tickbox = $("#wheelchair");
+var tickbox = document.getElementById('wheelchair');
 var carResults = $('.results');
 var moreCarInfo = $('.moreInformation');
 var distanceInput = document.getElementById('enterDistance');
 var selectedCar;
+var wheelchairFriendlyCars;
+
+// on click of featured images, instantly appears with the featured car in the result and more info
+$('#bigImage').click(function(){
+    $('.featuredCars').hide();
+    $('.resultsSection').css('visibility', 'visible');
+    $('.moreInformation').css('visibility', 'visible');
+    $('.fuelCosts').css('visibility', 'visible');
+    var resultsOutput = $('.searchResults');
+    resultsOutput.html(`
+    <div class="resultItem">
+        <div class="resultImg">
+            <img class="previewImg" src="${cars[2].image}" alt="">
+        </div>
+        <div class="resultInfo">
+            <h3>${cars[2].name}</h3>
+            <h6>${cars[2].makeModel}</h6>
+            <p>${cars[2].litresPer100km}/100km</p>
+        </div>
+        <div class="priceTag">
+            <h4>${cars[2].costPerDay}<br>/Day</h4>
+        </div>
+    </div>
+    `);
+
+    var carMoreInformation = $('.moreInformation');
+    carMoreInformation.html(`
+        <div class="moreInfoHeader">
+            <div class="moreInfoCarDetails">
+                <h2>${cars[2].name}</h2>
+                <h5 class="carModel">${cars[2].makeModel}</h5>
+            </div>
+            <div class="moreInfoCarImage">
+                <img src="${cars[2].image}" alt="">
+            </div>
+        </div>
+        <div class="moreInfoDescription">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
+            <button class="bookNow">BOOK NOW</button>
+        </div>
+    </div>
+    `);
+});
+
+
 
 // form validation
 var parsleyForm = $("#parsleyValidation").parsley();
@@ -146,7 +187,6 @@ parsleyForm.subscribe('parsley:form:success', function() {
     difference = fromdate - todate;
     days = Math.abs(Math.ceil(difference / (1000 * (60 * 60) * 24)));
     passengers = $('#passengerpicker').val();
-    console.log('great success, very nice!');
     $('.featuredCars').hide();
     $('.resultsSection').css('visibility', 'visible');
     $('.fuelCosts').css('visibility', 'visible');
@@ -162,35 +202,42 @@ $(function(){
     });
 });
 
-/** function to show results in the DOM based on inputed information into the form
-    * run if statement that checks if the user has checked the wheelchair accessible option for the cars
-*/
+function createWheelchairFriendlyCarArray(){
+    var resultsOutput = $('.searchResults');
+    // create new array for cars that are wheelchair friendly
+    var wheelchairFriendlyCars = [];
+    cars.forEach(car => {
+        if(car.wheelchairFriendly === true){
+            wheelchairFriendlyCars.push(car);
+        }
+    });
+
+}
 
 function showCarResults(){
-    console.log("this is working :)");
     var resultsOutput = $('.searchResults');
     resultsOutput.html(` `);
     for (var i = 0; i < cars.length; i++) {
         var car = cars[i];
-        if ((days >= car.minDays && days <= car.maxDays) && (passengers >= car.minPassengers && passengers <= car.maxPassengers) && (tickbox.checked == true && car.wheelchairFriendly == true)) {
-            resultsOutput.append(`
-            <div class="resultItem" id="${i}">
-                <div class="resultImg">
-                    <img class="previewImg" src="${car.image}" alt="">
+        // showing car results
+        if ($('#wheelchair').is(':checked') && car.wheelchairFriendly === true) {
+            if ((days >= car.minDays && days <= car.maxDays) && (passengers >= car.minPassengers && passengers <= car.maxPassengers)) {
+                resultsOutput.append(`
+                <div class="resultItem" id="${i}">
+                    <div class="resultImg">
+                        <img class="previewImg" src="${car.image}" alt="">
+                    </div>
+                    <div class="resultInfo">
+                        <h3>${car.name}</h3>
+                        <h6>${car.makeModel}</h6>
+                        <p>${car.litresPer100km}/100km</p>
+                    </div>
+                    <div class="priceTag">
+                        <h4>${car.costPerDay}<br>/Day</h4>
+                    </div>
                 </div>
-                <div class="resultInfo">
-                    <h3>${car.name}</h3>
-                    <h6>${car.makeModel}</h6>
-                    <p>${car.litresPer100km}/100km</p>
-                </div>
-                <div class="priceTag">
-                    <h4>${car.costPerDay}<br>/Day</h4>
-                </div>
-            </div>
-            `);
-
-        } else {
-
+                `);
+            }
         } if ((days >= car.minDays && days <= car.maxDays) && (passengers >= car.minPassengers && passengers <= car.maxPassengers)) {
             resultsOutput.append(`
             <div class="resultItem" id="${i}">
@@ -207,11 +254,9 @@ function showCarResults(){
                 </div>
             </div>
             `);
-
         }
-
-        }
-        showMoreInformation();
+    }
+    showMoreInformation();
 }
 
 // onclick for more information visibility

@@ -161,6 +161,10 @@ body {
     height: 65vh;
  }
 
+ .results {
+    overflow: scroll;
+ }
+
 .moreInformation{
     visibility:hidden;
 }
@@ -293,7 +297,7 @@ body {
     font-size: 18px;
   }
 
-.bigImage img{
+#bigImage img{
     width: 100%;
     padding-left: 10px;
     padding-bottom: 10px;
@@ -310,6 +314,11 @@ body {
 .twoImages img {
     width: 99%;
     margin-bottom: 10px;
+}
+
+#bottomImg {
+    object-fit: cover;
+    height: 34%;
 }
 
 .form {
