@@ -12,7 +12,7 @@ var cars = [
         maxDays: "5",
         minPassengers: "1",
         maxPassengers: "1",
-        costPerDay: "$109",
+        costPerDay: 109,
         litresPer100km: "3.7",
         wheelchairFriendly: false,
     },
@@ -24,7 +24,7 @@ var cars = [
         maxDays: "5",
         minPassengers: "1",
         maxPassengers: "1",
-        costPerDay: "$109",
+        costPerDay: 109,
         litresPer100km: "3.7",
         wheelchairFriendly: false,
     },
@@ -37,7 +37,7 @@ var cars = [
         maxDays: "10",
         minPassengers: "1",
         maxPassengers: "2",
-        costPerDay: "$129",
+        costPerDay: 129,
         litresPer100km: "8.5",
         wheelchairFriendly: false,
     },
@@ -49,7 +49,7 @@ var cars = [
         maxDays: "10",
         minPassengers: "1",
         maxPassengers: "2",
-        costPerDay: "$129",
+        costPerDay: 129,
         litresPer100km: "8.5",
         wheelchairFriendly: true,
     },
@@ -61,7 +61,7 @@ var cars = [
         maxDays: "10",
         minPassengers: "1",
         maxPassengers: "2",
-        costPerDay: "$129",
+        costPerDay: 129,
         litresPer100km: "8.5",
         wheelchairFriendly: true,
     },
@@ -74,7 +74,7 @@ var cars = [
         maxDays: "10",
         minPassengers: "1",
         maxPassengers: "5",
-        costPerDay: "$144",
+        costPerDay: 144,
         litresPer100km: "9.7",
         wheelchairFriendly: true,
     },
@@ -86,7 +86,7 @@ var cars = [
         maxDays: "10",
         minPassengers: "1",
         maxPassengers: "5",
-        costPerDay: "$144",
+        costPerDay: 144,
         litresPer100km: "8.7",
         wheelchairFriendly: true,
     },
@@ -99,7 +99,7 @@ var cars = [
         maxDays: "15",
         minPassengers: "2",
         maxPassengers: "6",
-        costPerDay: "$200",
+        costPerDay: 200,
         litresPer100km: "17",
         wheelchairFriendly: true,
 
@@ -112,7 +112,7 @@ var cars = [
         maxDays: "15",
         minPassengers: "2",
         maxPassengers: "6",
-        costPerDay: "$200",
+        costPerDay: 200,
         litresPer100km: "17",
         wheelchairFriendly: true,
     },
@@ -129,6 +129,7 @@ var tickbox = document.getElementById('wheelchair');
 var distanceInput = document.getElementById('enterDistance');
 var selectedCar;
 var wheelchairFriendlyCars;
+var finalFuelPrice;
 
 // on click of featured images, instantly appears with the featured car in the result and more info
 $('#bigImage').click(function(){
@@ -167,7 +168,7 @@ $('#bigImage').click(function(){
         </div>
         <div class="moreInfoDescription">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
-            <button class="bookNow">BOOK NOW</button>
+            <button id="bookNow">BOOK NOW</button>
         </div>
     </div>
     `);
@@ -209,7 +210,7 @@ $('#topImg').click(function(){
         </div>
         <div class="moreInfoDescription">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
-            <button class="bookNow">BOOK NOW</button>
+            <button id="bookNow">BOOK NOW</button>
         </div>
     </div>
     `);
@@ -251,7 +252,7 @@ $('#bottomImg').click(function(){
         </div>
         <div class="moreInfoDescription">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
-            <button class="bookNow">BOOK NOW</button>
+            <button id="bookNow">BOOK NOW</button>
         </div>
     </div>
     `);
@@ -374,6 +375,21 @@ function showCarResults(){
     showMoreInformation();
 }
 
+// function that calculates the total cost of fuel
+distanceInput.addEventListener('keyup', function() {
+    var totalCost = $('.totalCost');
+    var input = Number(distanceInput.value);
+    // computation of total fuel cost
+    var litrePerKM = selectedCar.litresPer100km / 100;
+    var costPerLitre = 2.7;
+    var finalFuelPrice = input * (litrePerKM * costPerLitre);
+    // insert that total price into the HTML
+    totalCost.html(`
+    <p>Your estimated fuel cost is $${finalFuelPrice.toFixed(2)}</p>
+    `);
+    Number(finalFuelPrice);
+});
+
 // onclick for more information visibility
 function showMoreInformation() {
     var resultItems = document.querySelectorAll('.resultItem');
@@ -394,28 +410,25 @@ function showMoreInformation() {
                     </div>
                     <div class="moreInfoDescription">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
-                        <button class="bookNow">BOOK NOW</button>
+                        <button id="bookNow">BOOK NOW</button>
                     </div>
                 </div>
                 `);
+            // function that calculates the total cost of the rental, which combines the number of days * the estimated fuel cost
+            $('#bookNow').click(function(){
+
+                var moreInfoOutput = $('.moreInfoDescription');
+                var totalCost = (days * selectedCar.costPerDay) + finalFuelPrice;
+                Math.floor(totalCost);
+                moreInfoOutput.html(`
+                    <p>The total cost of you car rental for ${days} days is $${totalCost}</p>
+                    <button id="bookNow">BOOK NOW</button>
+                `);
+            });
+
         });
     });
 }
 
-// function that calculates the total cost of fuel
-distanceInput.addEventListener('keyup', function() {
-    var totalCost = $('.totalCost');
-    var input = Number(distanceInput.value);
-    // computation of total fuel cost
-    var litrePerKM = selectedCar.litresPer100km / 100;
-    var costPerLitre = 2.7;
-    var finalFuelPrice = input * (litrePerKM * costPerLitre);
-    // insert that total price into the HTML
-    totalCost.html(`
-    <p>Your estimated fuel cost is $${finalFuelPrice.toFixed(2)}</p>
-    `);
-});
-
 // end of jQuery master function
 });
-
