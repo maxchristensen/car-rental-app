@@ -65,6 +65,19 @@ button:hover{
     transition: all 0.5s ease;
 }
 
+#viewAllCars {
+    margin-top: 10px;
+    background-color: $blue;
+    width: 93%;
+}
+
+#viewAllCars:hover {
+    margin-top: 10px;
+    background-color: $black;
+    color: $white;
+    width: 93%;
+}
+
 .bookNow{
     margin-top: 10px;
     border-radius: 45px;
@@ -302,6 +315,7 @@ body {
     padding-left: 10px;
     padding-bottom: 10px;
     padding-right: 10px;
+    cursor: pointer;
 }
 
 .twoImages {
@@ -314,6 +328,7 @@ body {
 .twoImages img {
     width: 99%;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 #bottomImg {

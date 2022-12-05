@@ -1,3 +1,5 @@
+/* jshint esversion:6 */
+
 $(document).ready(function (){
 // array of cars
 var cars = [
@@ -124,8 +126,6 @@ var difference;
 var passengers;
 var days;
 var tickbox = document.getElementById('wheelchair');
-var carResults = $('.results');
-var moreCarInfo = $('.moreInformation');
 var distanceInput = document.getElementById('enterDistance');
 var selectedCar;
 var wheelchairFriendlyCars;
@@ -133,6 +133,7 @@ var wheelchairFriendlyCars;
 // on click of featured images, instantly appears with the featured car in the result and more info
 $('#bigImage').click(function(){
     $('.featuredCars').hide();
+    $('#viewAllCars').hide();
     $('.resultsSection').css('visibility', 'visible');
     $('.moreInformation').css('visibility', 'visible');
     $('.fuelCosts').css('visibility', 'visible');
@@ -172,6 +173,119 @@ $('#bigImage').click(function(){
     `);
 });
 
+$('#topImg').click(function(){
+    $('.featuredCars').hide();
+    $('#viewAllCars').hide();
+    $('.resultsSection').css('visibility', 'visible');
+    $('.moreInformation').css('visibility', 'visible');
+    $('.fuelCosts').css('visibility', 'visible');
+    var resultsOutput = $('.searchResults');
+    resultsOutput.html(`
+    <div class="resultItem">
+        <div class="resultImg">
+            <img class="previewImg" src="${cars[3].image}" alt="">
+        </div>
+        <div class="resultInfo">
+            <h3>${cars[3].name}</h3>
+            <h6>${cars[3].makeModel}</h6>
+            <p>${cars[3].litresPer100km}/100km</p>
+        </div>
+        <div class="priceTag">
+            <h4>${cars[3].costPerDay}<br>/Day</h4>
+        </div>
+    </div>
+    `);
+
+    var carMoreInformation = $('.moreInformation');
+    carMoreInformation.html(`
+        <div class="moreInfoHeader">
+            <div class="moreInfoCarDetails">
+                <h2>${cars[3].name}</h2>
+                <h5 class="carModel">${cars[3].makeModel}</h5>
+            </div>
+            <div class="moreInfoCarImage">
+                <img src="${cars[3].image}" alt="">
+            </div>
+        </div>
+        <div class="moreInfoDescription">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
+            <button class="bookNow">BOOK NOW</button>
+        </div>
+    </div>
+    `);
+});
+
+$('#bottomImg').click(function(){
+    $('.featuredCars').hide();
+    $('#viewAllCars').hide();
+    $('.resultsSection').css('visibility', 'visible');
+    $('.moreInformation').css('visibility', 'visible');
+    $('.fuelCosts').css('visibility', 'visible');
+    var resultsOutput = $('.searchResults');
+    resultsOutput.html(`
+    <div class="resultItem">
+        <div class="resultImg">
+            <img class="previewImg" src="${cars[7].image}" alt="">
+        </div>
+        <div class="resultInfo">
+            <h3>${cars[7].name}</h3>
+            <h6>${cars[7].makeModel}</h6>
+            <p>${cars[7].litresPer100km}/100km</p>
+        </div>
+        <div class="priceTag">
+            <h4>${cars[7].costPerDay}<br>/Day</h4>
+        </div>
+    </div>
+    `);
+
+    var carMoreInformation = $('.moreInformation');
+    carMoreInformation.html(`
+        <div class="moreInfoHeader">
+            <div class="moreInfoCarDetails">
+                <h2>${cars[7].name}</h2>
+                <h5 class="carModel">${cars[7].makeModel}</h5>
+            </div>
+            <div class="moreInfoCarImage">
+                <img src="${cars[7].image}" alt="">
+            </div>
+        </div>
+        <div class="moreInfoDescription">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
+            <button class="bookNow">BOOK NOW</button>
+        </div>
+    </div>
+    `);
+});
+
+// view all cars onclick
+$('#viewAllCars').click(function() {
+    $('.featuredCars').hide();
+    $('#viewAllCars').hide();
+    $('.resultsSection').css('visibility', 'visible');
+    $('.fuelCosts').css('visibility', 'visible');
+
+    var resultsOutput = $('.searchResults');
+    for (var i = 0; i < cars.length; i++) {
+        var car = cars[i];
+        resultsOutput.append(`
+        <div class="resultItem" id="${i}">
+            <div class="resultImg">
+                <img class="previewImg" src="${car.image}" alt="">
+            </div>
+            <div class="resultInfo">
+                <h3>${car.name}</h3>
+                <h6>${car.makeModel}</h6>
+                <p>${car.litresPer100km}/100km</p>
+            </div>
+            <div class="priceTag">
+                <h4>${car.costPerDay}<br>/Day</h4>
+            </div>
+        </div>
+        `);
+    }
+    showMoreInformation();
+});
+
 
 
 // form validation
@@ -187,6 +301,7 @@ parsleyForm.subscribe('parsley:form:success', function() {
     difference = fromdate - todate;
     days = Math.abs(Math.ceil(difference / (1000 * (60 * 60) * 24)));
     passengers = $('#passengerpicker').val();
+    $('#viewAllCars').hide();
     $('.featuredCars').hide();
     $('.resultsSection').css('visibility', 'visible');
     $('.fuelCosts').css('visibility', 'visible');
