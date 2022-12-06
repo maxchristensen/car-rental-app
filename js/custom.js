@@ -13,7 +13,6 @@ $(document).ready(function () {
             maxPassengers: "1",
             costPerDay: 109,
             litresPer100km: "3.7",
-            wheelchairFriendly: false,
         },
         {
             name: "Honda",
@@ -25,7 +24,6 @@ $(document).ready(function () {
             maxPassengers: "1",
             costPerDay: 109,
             litresPer100km: "3.7",
-            wheelchairFriendly: false,
         },
         // small cars
         {
@@ -38,7 +36,6 @@ $(document).ready(function () {
             maxPassengers: "2",
             costPerDay: 129,
             litresPer100km: "8.5",
-            wheelchairFriendly: false,
         },
         {
             name: "Gangster Special",
@@ -50,7 +47,6 @@ $(document).ready(function () {
             maxPassengers: "2",
             costPerDay: 129,
             litresPer100km: "8.5",
-            wheelchairFriendly: true,
         },
         {
             name: "Beetle",
@@ -62,7 +58,6 @@ $(document).ready(function () {
             maxPassengers: "2",
             costPerDay: 129,
             litresPer100km: "8.5",
-            wheelchairFriendly: true,
         },
         // large cars
         {
@@ -75,7 +70,6 @@ $(document).ready(function () {
             maxPassengers: "5",
             costPerDay: 144,
             litresPer100km: "9.7",
-            wheelchairFriendly: true,
         },
         {
             name: "Defender",
@@ -87,7 +81,6 @@ $(document).ready(function () {
             maxPassengers: "5",
             costPerDay: 144,
             litresPer100km: "8.7",
-            wheelchairFriendly: true,
         },
         // motor homes
         {
@@ -100,7 +93,6 @@ $(document).ready(function () {
             maxPassengers: "6",
             costPerDay: 200,
             litresPer100km: "17",
-            wheelchairFriendly: true,
 
         },
         {
@@ -113,7 +105,6 @@ $(document).ready(function () {
             maxPassengers: "6",
             costPerDay: 200,
             litresPer100km: "17",
-            wheelchairFriendly: true,
         },
 
     ];
@@ -124,10 +115,8 @@ $(document).ready(function () {
     var difference;
     var passengers;
     var days;
-    var tickbox = document.getElementById('wheelchair');
     var distanceInput = document.getElementById('enterDistance');
     var selectedCar;
-    var wheelchairFriendlyCars;
     var finalFuelPrice;
 
     // on click of featured images, instantly appears with the featured car in the result and more info
@@ -277,7 +266,7 @@ $(document).ready(function () {
         </div>
         `);
         }
-    showMoreInformation();
+        showMoreInformation();
     });
 
 
@@ -311,7 +300,7 @@ $(document).ready(function () {
         });
     });
 
-    function showCarResults(){
+    function showCarResults() {
         var resultsOutput = $('.searchResults');
         resultsOutput.html(` `);
         for (var i = 0; i < cars.length; i++) {
@@ -337,7 +326,7 @@ $(document).ready(function () {
         }
         showMoreInformation();
     }
-    
+
 
 
     // onclick for more information visibility
@@ -393,6 +382,5 @@ $(document).ready(function () {
             });
         });
     }
-
     // end of jQuery master function
 });

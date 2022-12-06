@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,31 +9,35 @@
     <!-- jQuery css -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
-    <!-- custom css -->  
+    <!-- custom css -->
     <link rel="stylesheet" href="css/custom.css">
 
     <title>Debut Car Rentals</title>
 </head>
+
 <body>
 
     <!-- master container -->
     <div class="masterContainer">
-            
+
         <!-- sidebar -->
         <div class="sidebar">
             <div class="form">
                 <form id="parsleyValidation">
-                    <input type="text" class="datePicker" id="frompicker" data-parsley-required="true" data-parsley-required-message="Please enter date of pickup" placeholder="From...">
+                    <input type="text" class="datePicker" id="frompicker" data-parsley-required="true"
+                        data-parsley-required-message="Please enter date of pickup" placeholder="From...">
                     <br><br><br>
-                    <input type="text" class="datePicker" id="topicker" data-parsley-required="true" data-parsley-required-message="Please enter date of dropoff" placeholder="To...">
+                    <input type="text" class="datePicker" id="topicker" data-parsley-required="true"
+                        data-parsley-required-message="Please enter date of dropoff" placeholder="To...">
                     <br><br><br>
-                    <input type="text" class="datePicker" id="passengerpicker" data-parsley-required="true" data-parsley-required-message="Please enter the number of passengers" placeholder="Passengers...">
-                    <h6>Wheelchair Accessible?</h6><input type="checkbox" id="wheelchair">
+                    <input type="text" class="datePicker" id="passengerpicker" data-parsley-required="true"
+                        data-parsley-required-message="Please enter the number of passengers"
+                        placeholder="Passengers...">
                     <br><br><br>
                     <button id="searchResultsButton" data-parsley-type="submit">SEARCH</button>
                 </form>
             </div>
-        <!-- end of sidebar -->
+            <!-- end of sidebar -->
         </div>
 
         <!-- featured cars section -->
@@ -59,33 +64,33 @@
                 </div>
                 <div class="moreInformation"></div>
             </div>
-                <div class="fuelCosts">
-                    <div class="fuelHeader">
-                        <h6>Calculate Fuel Costs</h6>
-                    </div>
-                    <div class="calculateFuelCosts">
-                        <input type="text" id="enterDistance" placeholder="Enter Distance...">
-                        <div class="totalCost"></div>
-                    </div>
+            <div class="fuelCosts">
+                <div class="fuelHeader">
+                    <h6>Calculate Fuel Costs</h6>
                 </div>
+                <div class="calculateFuelCosts">
+                    <input type="text" id="enterDistance" placeholder="Enter Distance...">
+                    <div class="totalCost"></div>
+                </div>
+            </div>
         </div>
 
-        
-    <!-- end of master container -->
+
+        <!-- end of master container -->
     </div>
 
     <!-- TITLE -->
     <p id="title">DEBUT<p>
 
-    <!-- JS LIBRARIES -->
+            <!-- JS LIBRARIES -->
 
-    <!-- jQuery 3.6.1 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <!-- Jquery UI -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <!-- parsley js -->
-    <script src="js/parsley.js"></script>
-    <!-- custom js -->
-    <script src="js/custom.js"></script>
+            <!-- jQuery 3.6.1 -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+            <!-- Jquery UI -->
+            <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+            <!-- parsley js -->
+            <script src="js/parsley.js"></script>
+            <!-- custom js -->
+            <script src="js/custom.js"></script>
 </body>
 </html>
