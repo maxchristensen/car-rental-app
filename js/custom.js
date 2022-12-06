@@ -136,7 +136,6 @@ $(document).ready(function () {
         $('#viewAllCars').hide();
         $('.resultsSection').css('visibility', 'visible');
         $('.moreInformation').css('visibility', 'visible');
-        $('.fuelCosts').css('visibility', 'visible');
         var resultsOutput = $('.searchResults');
         resultsOutput.html(`
     <div class="resultItem">
@@ -149,7 +148,7 @@ $(document).ready(function () {
             <p>${cars[2].litresPer100km}/100km</p>
         </div>
         <div class="priceTag">
-            <h4>${cars[2].costPerDay}<br>/Day</h4>
+            <h4>$${cars[2].costPerDay}<br>/Day</h4>
         </div>
     </div>
     `);
@@ -167,7 +166,6 @@ $(document).ready(function () {
         </div>
         <div class="moreInfoDescription">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
-            <button id="bookNow">BOOK NOW</button>
         </div>
     </div>
     `);
@@ -178,7 +176,6 @@ $(document).ready(function () {
         $('#viewAllCars').hide();
         $('.resultsSection').css('visibility', 'visible');
         $('.moreInformation').css('visibility', 'visible');
-        $('.fuelCosts').css('visibility', 'visible');
         var resultsOutput = $('.searchResults');
         resultsOutput.html(`
     <div class="resultItem">
@@ -191,7 +188,7 @@ $(document).ready(function () {
             <p>${cars[3].litresPer100km}/100km</p>
         </div>
         <div class="priceTag">
-            <h4>${cars[3].costPerDay}<br>/Day</h4>
+            <h4>$${cars[3].costPerDay}<br>/Day</h4>
         </div>
     </div>
     `);
@@ -209,7 +206,6 @@ $(document).ready(function () {
         </div>
         <div class="moreInfoDescription">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
-            <button id="bookNow">BOOK NOW</button>
         </div>
     </div>
     `);
@@ -220,7 +216,6 @@ $(document).ready(function () {
         $('#viewAllCars').hide();
         $('.resultsSection').css('visibility', 'visible');
         $('.moreInformation').css('visibility', 'visible');
-        $('.fuelCosts').css('visibility', 'visible');
         var resultsOutput = $('.searchResults');
         resultsOutput.html(`
     <div class="resultItem">
@@ -233,7 +228,7 @@ $(document).ready(function () {
             <p>${cars[7].litresPer100km}/100km</p>
         </div>
         <div class="priceTag">
-            <h4>${cars[7].costPerDay}<br>/Day</h4>
+            <h4>$${cars[7].costPerDay}<br>/Day</h4>
         </div>
     </div>
     `);
@@ -251,7 +246,6 @@ $(document).ready(function () {
         </div>
         <div class="moreInfoDescription">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p>
-            <button id="bookNow">BOOK NOW</button>
         </div>
     </div>
     `);
@@ -278,11 +272,12 @@ $(document).ready(function () {
                 <p>${car.litresPer100km}/100km</p>
             </div>
             <div class="priceTag">
-                <h4>${car.costPerDay}<br>/Day</h4>
+                <h4>$${car.costPerDay}<br>/Day</h4>
             </div>
         </div>
         `);
         }
+    showMoreInformation();
     });
 
 
@@ -316,18 +311,6 @@ $(document).ready(function () {
         });
     });
 
-    function createWheelchairFriendlyCarArray() {
-        var resultsOutput = $('.searchResults');
-        // create new array for cars that are wheelchair friendly
-        var wheelchairFriendlyCars = [];
-        cars.forEach(car => {
-            if (car.wheelchairFriendly === true) {
-                wheelchairFriendlyCars.push(car);
-            }
-        });
-
-    }
-
     function showCarResults(){
         var resultsOutput = $('.searchResults');
         resultsOutput.html(` `);
@@ -346,7 +329,7 @@ $(document).ready(function () {
                         <p>${car.litresPer100km}/100km</p>
                     </div>
                     <div class="priceTag">
-                        <h4>${car.costPerDay}<br>/Day</h4>
+                        <h4>$${car.costPerDay}<br>/Day</h4>
                     </div>
                 </div>
                 `);

@@ -195,6 +195,7 @@ body {
     color: $black;
     height: 13vh;
     margin-bottom: 10px;
+    transition: all 0.5s ease;
 }
 
 .resultImg{
@@ -228,6 +229,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .moreInfoCarDetails{
@@ -368,3 +370,14 @@ li.parsley-required{
     list-style: none;
     margin-top: 5px;
 }
+
+.resultItem:hover{
+    background-color: $blue;
+    color: $white;
+    transition: all 0.5s ease;
+
+    .priceTag{
+        border-left: 4px solid $white;
+    }
+}
+
