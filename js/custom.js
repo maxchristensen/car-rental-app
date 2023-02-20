@@ -266,7 +266,7 @@ $(document).ready(function () {
         </div>
         `);
         }
-        showMoreInformation();
+        previewCarInformation();
     });
 
 
@@ -357,11 +357,11 @@ $(document).ready(function () {
                 // function that calculates the total cost of fuel
                 distanceInput.addEventListener('keyup', function () {
                     var totalCost = $('.totalCost');
-                    var input = Number(distanceInput.value);
+                    var input = Math.floor(distanceInput.value);
                     // computation of total fuel cost
                     var litrePerKM = selectedCar.litresPer100km / 100;
                     var costPerLitre = 2.7;
-                    finalFuelPrice = input * (litrePerKM * costPerLitre);
+                    finalFuelPrice = Math.floor(input * (litrePerKM * costPerLitre));
                     // insert that total price into the HTML
                     totalCost.html(`
         <p>Your estimated fuel cost is $${finalFuelPrice.toFixed(2)}</p>
@@ -372,11 +372,55 @@ $(document).ready(function () {
                 $('#bookNow').click(function () {
                     var moreInfoOutput = $('.moreInfoDescription');
                     var costOfDays = (days * selectedCar.costPerDay);
-                    var totalPriceOfRental = costOfDays + finalFuelPrice;
+                    var totalPriceOfRental = Math.floor(costOfDays) + finalFuelPrice;
                     moreInfoOutput.html(`
             <p>The total cost of you car rental for ${days} days is $${totalPriceOfRental}</p>
             <button id="bookNow">BOOK NOW</button>
-        `);
+        `
+        );
+                });
+
+            });
+        });
+    }
+
+    // onclick for more information visibility
+    function previewCarInformation() {
+        var resultItems = document.querySelectorAll('.resultItem');
+        Array.from(resultItems).forEach(function (resultItems) {
+            resultItems.addEventListener('click', function () {
+                selectedCar = cars[this.id];
+                $('.moreInformation').css('visibility', 'visible');
+                var carMoreInformation = $('.moreInformation');
+                carMoreInformation.html(`
+                    <div class="moreInfoHeader">
+                        <div class="moreInfoCarDetails">
+                            <h2>${cars[this.id].name}</h2>
+                            <h5 class="carModel">${cars[this.id].makeModel}</h5>
+                        </div>
+                        <div class="moreInfoCarImage">
+                            <img src="${cars[this.id].image}" alt="">
+                        </div>
+                    </div>
+                    <div class="moreInfoDescription">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor nec feugiat nisl pretium fusce. Purus non enim praesent elementum facilisis leo vel fringilla est. Ultrices eros in cursus turpis massa tincidunt dui.</p><br><br>
+                        <p class="moreInfoText">please complete the form to calculate total cost</p>
+                    </div>
+                </div>
+                `);
+
+                // function that calculates the total cost of fuel
+                distanceInput.addEventListener('keyup', function () {
+                    var totalCost = $('.totalCost');
+                    var input = Math.floor(distanceInput.value);
+                    // computation of total fuel cost
+                    var litrePerKM = selectedCar.litresPer100km / 100;
+                    var costPerLitre = 2.7;
+                    finalFuelPrice = Math.floor(input * (litrePerKM * costPerLitre));
+                    // insert that total price into the HTML
+                    totalCost.html(`
+                        <p>Your estimated fuel cost is $${finalFuelPrice.toFixed(2)}</p>
+                        `);
                 });
 
             });
